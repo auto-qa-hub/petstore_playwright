@@ -1,4 +1,5 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, request } from '@playwright/test';
+import { validUserName, validPassword } from '../playwright.config';
 
 test('has title', async ({ page }) => {
   await page.goto('https://playwright.dev/');
@@ -15,4 +16,25 @@ test('get started link', async ({ page }) => {
 
   // Expects page to have a heading with the name of Installation.
   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+});
+
+test.describe('Positive login test', () => {
+  test('Login', async ({ request }) => {
+
+    if (!validUserName || !validPassword) {
+      throw new Error('Username or password is undefined');
+    }
+    const response = await request.get('https://petstore.swagger.io/v2/user/login', {
+      
+      params: {
+        username: validUserName,
+        password: validPassword,
+      },
+    });
+
+    expect(response.status()).toBe(200);
+
+    const responseBody = await response.json();
+    console.log('Login response:', responseBody);
+  });
 });
