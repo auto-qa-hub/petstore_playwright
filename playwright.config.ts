@@ -1,5 +1,11 @@
 import { defineConfig, devices } from '@playwright/test';
 
+import * as dotenv from 'dotenv';
+dotenv.config();
+
+export const validUserName = process.env.VALID_USER_NAME;
+export const validPassword = process.env.VALID_PASSWORD;
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
