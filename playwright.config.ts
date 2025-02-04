@@ -1,5 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
-import dotenv from 'dotenv';
+
+import * as dotenv from 'dotenv';
 dotenv.config();
 
 export const validUserName = process.env.VALID_USER_NAME;
@@ -12,7 +13,6 @@ export const validPassword = process.env.VALID_PASSWORD;
 // import dotenv from 'dotenv';
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
-// require('dotenv').config()
 
 /**
  * See https://playwright.dev/docs/test-configuration.
