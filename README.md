@@ -55,32 +55,16 @@ Generate and view test reports:
 
 Playwright tests are located in the tests/ directory. Example structure:
 
-/tests
-  ├── storeTests.spec.ts
-  ├── userTests.spec.ts
-  ├── petTests.spec.js
+**/tests**
+- storeTests.spec.ts
+- userTests.spec.ts
+- petTests.spec.js
 
 Refer to the Playwright documentation - https://playwright.dev/docs/intro for writing and structuring tests.
 
-## CI/CD Integration
+## CI Integration
 
-To integrate Playwright with CI/CD pipelines, configure .github/workflows/playwright.yml or relevant CI scripts. Example:
-
-name: Playwright Tests
-on: [push, pull_request]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Install dependencies
-        run: npm install
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-      - name: Run tests
-        run: npx playwright test
+To integrate Playwright with CI/CD pipelines, configure .github/workflows/playwright.yml or relevant CI scripts. More - https://playwright.dev/docs/ci-intro
 
 ## Troubleshooting
 
