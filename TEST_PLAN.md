@@ -15,11 +15,15 @@ Error Handling: Test both positive and negative scenarios, in case the server is
 
 ## Risk & Mitigation
 - **API Instability**
+
 **Risk**: The Pet Store API may experience downtime or unexpected behavior during testing, leading to test failures or delays.
+
 **Mitigation**: Monitor the API's status and schedule tests during off-peak hours.
 
 - **Incomplete Test Data**
+
 **Risk**: Insufficient test data may result in incomplete test coverage. Without proper data, some scenarios, especially edge cases, may be missed.
+
 **Mitigation**: Develop a well-rounded dataset that includes both positive and negative test cases. This should cover normal use cases and edge conditions.
 
 ## Entry Criteria
