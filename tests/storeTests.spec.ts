@@ -1,4 +1,5 @@
 import {test, expect, request} from '@playwright/test';
+import ordersData from '../test-data/ordersData.json';
 const backendURL: string = 'https://petstore.swagger.io/v2/store'
 
 test.describe ('Testing access to orders in the pet store', () => {
@@ -14,14 +15,7 @@ test.describe ('Testing access to orders in the pet store', () => {
     test('Place an order for a pet', async () => {
         const context = await request.newContext();
         const response = await context.post(`${backendURL}/order`, {
-            data: {
-                "id": 1,
-                "petId": 0,
-                "quantity": 0,
-                "shipDate": "2025-01-01T17:00:00.000Z",
-                "status": "placed",
-                "complete": true
-            },
+            data: ordersData.order1,
         });
         expect(response.status()).toBe(200);
 
@@ -31,18 +25,10 @@ test.describe ('Testing access to orders in the pet store', () => {
 });
 
 test.describe('Find purchase order by ID', async () => {
-    const orderId = 2;
     test.beforeAll(async () => {
         const context = await request.newContext();
         const response = await context.post(`${backendURL}/order`, {
-            data: {
-                "id": orderId,
-                "petId": 0,
-                "quantity": 0,
-                "shipDate": "2025-06-01T17:12:00.000Z",
-                "status": "placed",
-                "complete": true
-            },
+            data: ordersData.order2,
         });
         expect(response.status()).toBe(200);
     
@@ -52,7 +38,7 @@ test.describe('Find purchase order by ID', async () => {
 
     test('Find order', async () => {
         const context = await request.newContext();
-        const response = await context.get(`${backendURL}/order/${orderId}`);
+        const response = await context.get(`${backendURL}/order/${ordersData.order2.id}`);
         expect(response.status()).toBe(200);
 
         const responseBody = await response.json();
@@ -61,18 +47,10 @@ test.describe('Find purchase order by ID', async () => {
 });
 
 test.describe('Delete order by ID', () => {
-    const orderId = 3;
     test.beforeAll(async () => {
         const context = await request.newContext();
         const response = await context.post(`${backendURL}/order`, {
-            data: {
-                "id": orderId,
-                "petId": 0,
-                "quantity": 0,
-                "shipDate": "2025-06-01T17:12:00.000Z",
-                "status": "placed",
-                "complete": true
-            },
+            data: ordersData.order3,
         });
         expect(response.status()).toBe(200);
 
@@ -82,7 +60,7 @@ test.describe('Delete order by ID', () => {
 
     test('Delete order', async () => {
         const context = await request.newContext();
-        const response = await context.delete(`${backendURL}/order/${orderId}`);
+        const response = await context.delete(`${backendURL}/order/${ordersData.order3.id}`);
         expect(response.status()).toBe(200);
 
         const responseBody = await response.json();
@@ -91,7 +69,7 @@ test.describe('Delete order by ID', () => {
 
     test.afterAll(async () => {
         const context = await request.newContext();
-        const response = await context.delete(`${backendURL}/order/${orderId}`);
+        const response = await context.delete(`${backendURL}/order/${ordersData.order3.id}`);
         expect(response.status()).toBe(404);
 
         const responseBody = await response.json();
