@@ -1,0 +1,66 @@
+{
+  "order1": {
+    "id": 1,
+    "petId": 0,
+    "quantity": 0,
+    "shipDate": "2025-01-01T17:00:00.000Z",
+    "status": "placed",
+    "complete": true
+  },
+  "pet2": {
+    "id": 2,
+    "category": {
+      "id": 0,
+      "name": "string"
+    },
+    "name": "doggie",
+    "photoUrls": ["string"],
+    "tags": [
+      {
+        "id": 0,
+        "name": "string"
+      }
+    ],
+    "status": ["available", "pending", "sold"]
+  },
+
+  "pet2update": {
+    "id": 2,
+    "category": {
+      "id": 0,
+      "name": "string",
+      "updatedName": "Updated Pet Name"
+    },
+    "name": "kitty",
+    "photoUrls": ["string"],
+    "tags": [
+      {
+        "id": 0,
+        "name": "string"
+      }
+    ],
+    "status": ["available", "pending", "sold"]
+  },
+
+  "pet4": {
+    "id": 4,
+    "status": ["available", "pending", "sold"]
+  },
+
+  "pet6": {
+    "id": 6,
+    "category": {
+      "id": 0,
+      "name": "string"
+    },
+    "name": "doggie",
+    "photoUrls": ["string"],
+    "tags": [
+      {
+        "id": 0,
+        "name": "string"
+      }
+    ],
+    "status": "available"
+  }
+}
