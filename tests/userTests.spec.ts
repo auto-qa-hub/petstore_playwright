@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import * as utilities from './utilities';
 import { validUserName, validPassword } from '../playwright.config';
-import testData from "../test-data/test.data.json"
+import testData from "../test-data/users.data.json";
 
 test.describe('User part tests', () => {
   test('Create User', async () => {
