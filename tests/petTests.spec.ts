@@ -1,12 +1,12 @@
 import { test, expect, request } from "@playwright/test";
 import * as fs from "fs";
 import * as path from "path";
-import pets from "../test-data/pets.Data.json"
+import pets from "../test-data/pets.Data.json";
 
 const backendURL: string = "https://petstore.swagger.io/v2/pet";
 
-test.describe("Testing uploading image for pet and pets creation/updating", () => {
-  test("Upload an image via API", async () => {
+test.describe("Upload an image via API", async () => {
+  test.beforeAll(async () => {
     const apiRequestContext = await request.newContext();
     const petId = 1;
     const additionalMetadata = "Sample metadata";
@@ -34,21 +34,25 @@ test.describe("Testing uploading image for pet and pets creation/updating", () =
     expect(responseBody).toHaveProperty("type");
     expect(responseBody).toHaveProperty("message");
   });
+});
 
-  test("Add a new pet to the store", async () => {
+test.describe("Add a new pet to the store", async () => {
+  test.beforeAll(async () => {
     const context = await request.newContext();
     const response = await context.post(`${backendURL}`, {
-      data:pets.pet2,
+      data: pets.pet2,
     });
     expect(response.status()).toBe(200);
     const responseBody = await response.json();
     console.log(responseBody);
   });
+});
 
-  test("Update an existing pet", async () => {
+test.describe("Update an existing pet", async () => {
+  test.beforeAll(async () => {
     const context = await request.newContext();
     const response = await context.post(`${backendURL}`, {
-      data: pets.pet2update
+      data: pets.pet2update,
     });
     expect(response.status()).toBe(200);
     const responseBody = await response.json();
@@ -115,7 +119,7 @@ test("Update pet information", async () => {
   const response = await context.post(`${backendURL}/${pets.pet2update.id}`, {
     form: {
       name: pets.pet2update.name,
-      status: pets.pet2update.status[2]
+      status: pets.pet2update.status[2],
     },
   });
   expect(response.status()).toBe(200);
@@ -129,7 +133,7 @@ test.describe("Delete pet by ID", async () => {
   test.beforeAll(async () => {
     const context = await request.newContext();
     const response = await context.post(`${backendURL}`, {
-      data: pets.pet6
+      data: pets.pet6,
     });
     expect(response.status()).toBe(200);
     const responseBody = await response.json();
